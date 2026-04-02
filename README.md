@@ -65,8 +65,8 @@ Note: You must create the "Admin", "Analyst", and "Viewers" groups in your datab
 
 ```bash
 python manage.py shell
-
-Python
+```
+```bash Python
 from django.contrib.auth.models import Group
 Group.objects.create(name='Admin')
 Group.objects.create(name='Analyst')
@@ -135,7 +135,9 @@ Authorization: Bearer <your_token>
 **Tradeoffs Considered:**
 * **Pure Django vs. Django REST Framework (DRF):** I consciously chose to build this using pure Django (`JsonResponse`, manual `json.loads()`) rather than using DRF.
   - *Tradeoff:* While DRF provides faster serialization and built-in JWT plugins, building the decorators, JWT decoding, and JSON responses manually demonstrates a deeper, foundational understanding of the request/response cycle, middleware concepts, and security logic.
+    
 * **SQLite vs. PostgreSQL:** I used SQLite as the default database.
   - *Tradeoff:* SQLite is not suitable for high-concurrency production environments. However, for the scope of this assessment, it provides a frictionless, zero-configuration setup process for the reviewer while still supporting the necessary SQL aggregation queries.
+    
 * **Custom JWT vs. Session Auth:** I bypassed Django's built-in session cookies to implement custom JWT authentication.
   - *Tradeoff:* This required writing a custom `@jwt_required` decorator to manually attach the user object to the request. The benefit is a fully stateless, decoupled API that is ready to be consumed by any modern frontend framework (React/Vue/Mobile).
