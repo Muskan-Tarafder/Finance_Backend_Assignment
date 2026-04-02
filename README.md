@@ -87,11 +87,14 @@ python manage.py runserver
 ```
 
 **API Endpoints Reference**
-```bash
-Authentication
-POST /api_login/ - Returns JWT and user role.
 
+Authentication
+```bash
+POST /api_login/ - Returns JWT and user role.
+```
 Dashboard & Analytics (Analysts & Admins)
+```bash
+
 GET /dashboard/ - High-level aggregates, net balance, and monthly/weekly trends.
 
 GET /dashboard/filter_records/ - Paginated list of records. Supports query params: ?type=, ?category=, ?start_date=, ?end_date=, ?page=.
@@ -99,8 +102,9 @@ GET /dashboard/filter_records/ - Paginated list of records. Supports query param
 GET /dashboard/expense_list/ - Paginated list of all expenses.
 
 GET /dashboard/income_list/ - Paginated list of all income.
-
+```
 Admin Management (Admins Only)
+```bash
 POST /adminpage/create_user/ - Creates a new user and assigns a role.
 
 POST /adminpage/add_finance/ - Create a new financial record.
@@ -118,4 +122,17 @@ Hit the api_login endpoint with your username and password.
 Copy the returned token.
 
 For all subsequent requests, include the token in the Headers:
+```bash
 Authorization: Bearer <your_token>
+```
+
+## Assumptions & Tradeoffs
+
+**Assumptions Made:**
+* **Role Permissions:** I assumed that "Viewers" are allowed to see the high-level aggregated dashboard data (trends, totals) but are explicitly blocked from accessing the granular, raw transaction lists. 
+* **Data Scale:** I assumed the dataset could grow reasonably large, which is why data aggregation for the dashboard is handled purely at the database level using `.annotate()` and `.aggregate()` rather than looping through records in Python memory.
+
+**Tradeoffs Considered:**
+* **Pure Django vs. Django REST Framework (DRF):** I consciously chose to build this using pure Django (`JsonResponse`, manual `json.loads()`) rather than using DRF. *Tradeoff:* While DRF provides faster serialization and built-in JWT plugins, building the decorators, JWT decoding, and JSON responses manually demonstrates a deeper, foundational understanding of the request/response cycle, middleware concepts, and security logic.
+* **SQLite vs. PostgreSQL:** I used SQLite as the default database. *Tradeoff:* SQLite is not suitable for high-concurrency production environments. However, for the scope of this assessment, it provides a frictionless, zero-configuration setup process for the reviewer while still supporting the necessary SQL aggregation queries.
+* **Custom JWT vs. Session Auth:** I bypassed Django's built-in session cookies to implement custom JWT authentication. *Tradeoff:* This required writing a custom `@jwt_required` decorator to manually attach the user object to the request. The benefit is a fully stateless, decoupled API that is ready to be consumed by any modern frontend framework (React/Vue/Mobile).
