@@ -259,12 +259,14 @@ def admin_required(view_func):
 @jwt_required
 @admin_required
 def adminpage(request):
-    context = {
-        'Users':'Users and Roles',
-        'Records':'Records',
-
-    }
-    return JsonResponse(context)
+    if request.method == 'GET':
+        context = {
+            'Users': 'Users and Roles',
+            'Records': 'Records',
+        }
+        return JsonResponse(context)
+        
+    return JsonResponse({'error': 'Method not allowed'}, status=405)
 
 @jwt_required
 @admin_required

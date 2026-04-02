@@ -8,7 +8,13 @@ from django.contrib.auth import authenticate
 import json
 import datetime
 def home(request):
-    pass
+    if request.method == 'GET':
+        context = {
+            'Status': 'Can perform Login',
+        }
+        return JsonResponse(context)
+        
+    return JsonResponse({'error': 'Method not allowed'}, status=405)
 
 @csrf_exempt
 def api_login(request):
