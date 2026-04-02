@@ -32,7 +32,7 @@ This project was built to demonstrate clean API architecture, database optimizat
 
 **1. Clone the repository and navigate into the directory**
 ```bash
-git clone [<your-repo-url>](https://github.com/Muskan-Tarafder/Finance_Backend_Assignment.git)
+git clone https://github.com/Muskan-Tarafder/Finance_Backend_Assignment.git
 cd finance_backend
 ```
 
