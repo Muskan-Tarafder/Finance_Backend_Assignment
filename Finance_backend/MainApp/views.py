@@ -408,3 +408,57 @@ def delete_finance(request,id):
         user.delete()
         return JsonResponse({'message':'Deleted Successfully'})
     return JsonResponse({'message':'Method wrong'},status=405)
+
+
+
+@jwt_required
+def filter_record(request):
+
+    if request.user.groups.filter(name='Viewers').exists():
+        return JsonResponse({'error': 'Viewers do not have access to this API.'}, status=403)
+
+    records = FinancialRecord.objects.all().order_by('-created_at')
+
+    category = request.GET.get('category')
+    record_type = request.GET.get('type')
+    start_date = request.GET.get('start_date')
+    end_date = request.GET.get('end_date')     # YYYY-MM-DD
+
+
+    if category:
+        records = records.filter(category__iexact=category) 
+        
+    if record_type:
+        records = records.filter(type__iexact=record_type)
+        
+    if start_date:
+        records = records.filter(created_at__lte=start_date) 
+        
+    if end_date:
+        records = records.filter(created_at__lte=end_date)
+
+    filtered_list = records.values('id', 'amount', 'type', 'category', 'short_note', 'created_at')
+
+    paginator = Paginator(filtered_list, 10)
+    page_number = request.GET.get('page', 1)
+
+    try:
+        page_obj = paginator.page(page_number)
+    except PageNotAnInteger:
+        page_obj = paginator.page(1)
+    except EmptyPage:
+        page_obj = paginator.page(paginator.num_pages)
+
+
+    context = {
+        'results': list(page_obj),
+        'pagination': {
+            'total_records': paginator.count,
+            'total_pages': paginator.num_pages,
+            'current_page': page_obj.number,
+            'has_next': page_obj.has_next(),
+            'has_previous': page_obj.has_previous()
+        }
+    }
+    
+    return JsonResponse(context)
