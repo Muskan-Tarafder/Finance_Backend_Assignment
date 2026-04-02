@@ -24,24 +24,21 @@ def api_login(request):
             username = data.get('username')
             password = data.get('password')
             
-            # Django checks if the username and password match the database
             user = authenticate(username=username, password=password)
             
             if user is not None:
-                # Build the VIP pass (Token Payload)
                 payload = {
                     'user_id': user.id,
                     'exp': datetime.datetime.utcnow() + datetime.timedelta(days=1), # Expires in 24 hours
                     'iat': datetime.datetime.utcnow() # Issued at
                 }
                 
-                # Sign it securely with your Django secret key
                 token = jwt.encode(payload, settings.SECRET_KEY, algorithm='HS256')
                 
                 return JsonResponse({
                     'token': token, 
                     'message': 'Login successful',
-                    'role': list(user.groups.values_list('name', flat=True)) # Hand back the role so frontend knows!
+                    'role': list(user.groups.values_list('name', flat=True)) 
                 })
             else:
                 return JsonResponse({'error': 'Invalid credentials'}, status=401)
