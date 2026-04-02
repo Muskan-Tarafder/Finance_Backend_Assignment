@@ -1,0 +1,1328 @@
+{
+  "info": {
+    "_postman_id": "3f882f39-cb02-4c87-81ee-4c88717baf6d",
+    "name": "Finance_Backend",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "47725730"
+  },
+  "item": [
+    {
+      "name": "Delete User",
+      "request": {
+        "method": "DELETE",
+        "header": []
+      },
+      "response": [
+        {
+          "name": "Admin Response",
+          "originalRequest": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://127.0.0.1:8000/dashboard/adminpage/delete_user/8",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8000",
+              "path": [
+                "dashboard",
+                "adminpage",
+                "delete_user",
+                "8"
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": null,
+          "header": [
+            {
+              "key": "Date",
+              "value": "Thu, 02 Apr 2026 21:01:46 GMT"
+            },
+            {
+              "key": "Server",
+              "value": "WSGIServer/0.2 CPython/3.9.6"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "key": "X-Frame-Options",
+              "value": "DENY"
+            },
+            {
+              "key": "Content-Length",
+              "value": "35"
+            },
+            {
+              "key": "X-Content-Type-Options",
+              "value": "nosniff"
+            },
+            {
+              "key": "Referrer-Policy",
+              "value": "same-origin"
+            },
+            {
+              "key": "Cross-Origin-Opener-Policy",
+              "value": "same-origin"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n    \"message\": \"Deleted Successfully\"\n}"
+        }
+      ]
+    },
+    {
+      "name": "Edit User",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://127.0.0.1:8000/dashboard/adminpage/edit_user/1",
+          "protocol": "http",
+          "host": [
+            "127",
+            "0",
+            "0",
+            "1"
+          ],
+          "port": "8000",
+          "path": [
+            "dashboard",
+            "adminpage",
+            "edit_user",
+            "1"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Record View",
+      "request": {
+        "auth": {
+          "type": "noauth"
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://127.0.0.1:8000/dashboard/adminpage/finance_records",
+          "protocol": "http",
+          "host": [
+            "127",
+            "0",
+            "0",
+            "1"
+          ],
+          "port": "8000",
+          "path": [
+            "dashboard",
+            "adminpage",
+            "finance_records"
+          ]
+        }
+      },
+      "response": [
+        {
+          "name": "Admin Response",
+          "originalRequest": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://127.0.0.1:8000/dashboard/adminpage/finance_records",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8000",
+              "path": [
+                "dashboard",
+                "adminpage",
+                "finance_records"
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": null,
+          "header": [
+            {
+              "key": "Date",
+              "value": "Thu, 02 Apr 2026 21:06:44 GMT"
+            },
+            {
+              "key": "Server",
+              "value": "WSGIServer/0.2 CPython/3.9.6"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "key": "X-Frame-Options",
+              "value": "DENY"
+            },
+            {
+              "key": "Content-Length",
+              "value": "1282"
+            },
+            {
+              "key": "X-Content-Type-Options",
+              "value": "nosniff"
+            },
+            {
+              "key": "Referrer-Policy",
+              "value": "same-origin"
+            },
+            {
+              "key": "Cross-Origin-Opener-Policy",
+              "value": "same-origin"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n    \"data\": [\n        {\n            \"id\": 1,\n            \"user_id\": 1,\n            \"amount\": 72000,\n            \"type\": \"EXPENSES\",\n            \"category\": \"Sales Revenue\",\n            \"created_at\": \"2026-04-02T07:15:38.344Z\",\n            \"updated_at\": \"2026-04-02T21:02:07.500Z\",\n            \"short_note\": \"Expensive travel\"\n        },\n        {\n            \"id\": 2,\n            \"user_id\": 1,\n            \"amount\": 25000,\n            \"type\": \"INCOME\",\n            \"category\": \"Sales Revenue\",\n            \"created_at\": \"2026-04-02T20:33:06.862Z\",\n            \"updated_at\": \"2026-04-02T20:33:06.862Z\",\n            \"short_note\": \"Annual contract for Acme Corp\"\n        },\n        {\n            \"id\": 3,\n            \"user_id\": 1,\n            \"amount\": 45.5,\n            \"type\": \"EXPENSES\",\n            \"category\": \"Software & Subscriptions\",\n            \"created_at\": \"2026-04-02T20:34:56.510Z\",\n            \"updated_at\": \"2026-04-02T20:34:56.510Z\",\n            \"short_note\": \"Subscriptions\"\n        },\n        {\n            \"id\": 4,\n            \"user_id\": 1,\n            \"amount\": 4000,\n            \"type\": \"INCOME\",\n            \"category\": \"Salary\",\n            \"created_at\": \"2026-04-02T20:35:09.993Z\",\n            \"updated_at\": \"2026-04-02T20:35:09.993Z\",\n            \"short_note\": \"April base pay\"\n        },\n        {\n            \"id\": 5,\n            \"user_id\": 1,\n            \"amount\": 250,\n            \"type\": \"INCOME\",\n            \"category\": \"Miscellaneous\",\n            \"created_at\": \"2026-04-02T20:35:31.404Z\",\n            \"updated_at\": \"2026-04-02T20:35:31.404Z\",\n            \"short_note\": \"Sold old office monitor\"\n        },\n        {\n            \"id\": 6,\n            \"user_id\": 1,\n            \"amount\": 350,\n            \"type\": \"EXPENSES\",\n            \"category\": \"Travel\",\n            \"created_at\": \"2026-04-02T20:51:49.218Z\",\n            \"updated_at\": \"2026-04-02T20:51:49.218Z\",\n            \"short_note\": \"Flight to client meeting\"\n        }\n    ]\n}"
+        },
+        {
+          "name": "Viewer Response",
+          "originalRequest": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://127.0.0.1:8000/dashboard/adminpage/finance_records",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8000",
+              "path": [
+                "dashboard",
+                "adminpage",
+                "finance_records"
+              ]
+            }
+          },
+          "status": "Forbidden",
+          "code": 403,
+          "_postman_previewlanguage": null,
+          "header": [
+            {
+              "key": "Date",
+              "value": "Thu, 02 Apr 2026 21:15:57 GMT"
+            },
+            {
+              "key": "Server",
+              "value": "WSGIServer/0.2 CPython/3.9.6"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "key": "X-Frame-Options",
+              "value": "DENY"
+            },
+            {
+              "key": "Content-Length",
+              "value": "36"
+            },
+            {
+              "key": "X-Content-Type-Options",
+              "value": "nosniff"
+            },
+            {
+              "key": "Referrer-Policy",
+              "value": "same-origin"
+            },
+            {
+              "key": "Cross-Origin-Opener-Policy",
+              "value": "same-origin"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n    \"error\": \"Forbidden. Admins only.\"\n}"
+        }
+      ]
+    },
+    {
+      "name": "User Details",
+      "request": {
+        "auth": {
+          "type": "noauth"
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://127.0.0.1:8000/dashboard/adminpage/user_details",
+          "protocol": "http",
+          "host": [
+            "127",
+            "0",
+            "0",
+            "1"
+          ],
+          "port": "8000",
+          "path": [
+            "dashboard",
+            "adminpage",
+            "user_details"
+          ]
+        }
+      },
+      "response": [
+        {
+          "name": "Admin Response",
+          "originalRequest": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://127.0.0.1:8000/dashboard/adminpage/user_details",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8000",
+              "path": [
+                "dashboard",
+                "adminpage",
+                "user_details"
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": null,
+          "header": [
+            {
+              "key": "Date",
+              "value": "Thu, 02 Apr 2026 21:06:53 GMT"
+            },
+            {
+              "key": "Server",
+              "value": "WSGIServer/0.2 CPython/3.9.6"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "key": "X-Frame-Options",
+              "value": "DENY"
+            },
+            {
+              "key": "Content-Length",
+              "value": "370"
+            },
+            {
+              "key": "X-Content-Type-Options",
+              "value": "nosniff"
+            },
+            {
+              "key": "Referrer-Policy",
+              "value": "same-origin"
+            },
+            {
+              "key": "Cross-Origin-Opener-Policy",
+              "value": "same-origin"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n    \"data\": [\n        {\n            \"id\": 1,\n            \"username\": \"Musk\",\n            \"email\": \"musk@gmail.com\"\n        },\n        {\n            \"id\": 3,\n            \"username\": \"Kili\",\n            \"email\": \"k@gmail.com\"\n        },\n        {\n            \"id\": 4,\n            \"username\": \"Mili\",\n            \"email\": \"\"\n        },\n        {\n            \"id\": 5,\n            \"username\": \"new_guy_steve\",\n            \"email\": \"new_guy@gmail.com\"\n        },\n        {\n            \"id\": 6,\n            \"username\": \"dan_analyst\",\n            \"email\": \"dan@company.com\"\n        },\n        {\n            \"id\": 7,\n            \"username\": \"ivy_investor\",\n            \"email\": \"ivy@company.com\"\n        }\n    ]\n}"
+        }
+      ]
+    },
+    {
+      "name": "Edit User",
+      "request": {
+        "auth": {
+          "type": "noauth"
+        },
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"username\":\"Musk123\",\r\n    \"email\":\"musk@gmail.com\",\r\n    \"first_name\":\"Musk123\",\r\n    \"last_name\":\"T\",\r\n    \"is_active\":\"True\",\r\n    \"groups\":[\"2\"]\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://127.0.0.1:8000/dashboard/adminpage/edit_user/2",
+          "protocol": "http",
+          "host": [
+            "127",
+            "0",
+            "0",
+            "1"
+          ],
+          "port": "8000",
+          "path": [
+            "dashboard",
+            "adminpage",
+            "edit_user",
+            "2"
+          ]
+        }
+      },
+      "response": [
+        {
+          "name": "Admin Response",
+          "originalRequest": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"username\": \"new_guy_steve\",\r\n    \"email\": \"new_guy@gmail.com\",\r\n    \"first_name\": \"Steve\",\r\n    \"last_name\": \"M\",\r\n    \"is_active\": true,\r\n    \"groups\": [\"2\"]\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://127.0.0.1:8000/dashboard/adminpage/edit_user/5",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8000",
+              "path": [
+                "dashboard",
+                "adminpage",
+                "edit_user",
+                "5"
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": null,
+          "header": [
+            {
+              "key": "Date",
+              "value": "Thu, 02 Apr 2026 21:05:49 GMT"
+            },
+            {
+              "key": "Server",
+              "value": "WSGIServer/0.2 CPython/3.9.6"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "key": "X-Frame-Options",
+              "value": "DENY"
+            },
+            {
+              "key": "Content-Length",
+              "value": "55"
+            },
+            {
+              "key": "X-Content-Type-Options",
+              "value": "nosniff"
+            },
+            {
+              "key": "Referrer-Policy",
+              "value": "same-origin"
+            },
+            {
+              "key": "Cross-Origin-Opener-Policy",
+              "value": "same-origin"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n    \"message\": \"User updated successfully\",\n    \"status\": 200\n}"
+        }
+      ]
+    },
+    {
+      "name": "Edit Finance",
+      "request": {
+        "auth": {
+          "type": "noauth"
+        },
+        "method": "PATCH",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"user\":\"1\",\r\n    \"amount\":\"62000\",\r\n    \"type\":\"EXPENSES\",\r\n    \"category\":\"Travel\",\r\n    \"short_note\":\"Expensive travel\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://127.0.0.1:8000/dashboard/adminpage/edit_finance/1",
+          "protocol": "http",
+          "host": [
+            "127",
+            "0",
+            "0",
+            "1"
+          ],
+          "port": "8000",
+          "path": [
+            "dashboard",
+            "adminpage",
+            "edit_finance",
+            "1"
+          ]
+        }
+      },
+      "response": [
+        {
+          "name": "Admin Response",
+          "originalRequest": {
+            "method": "PATCH",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"amount\":\"72000\",\r\n    \"category\":\"Sales Revenue\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://127.0.0.1:8000/dashboard/adminpage/edit_finance/1",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8000",
+              "path": [
+                "dashboard",
+                "adminpage",
+                "edit_finance",
+                "1"
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": null,
+          "header": [
+            {
+              "key": "Date",
+              "value": "Thu, 02 Apr 2026 21:02:07 GMT"
+            },
+            {
+              "key": "Server",
+              "value": "WSGIServer/0.2 CPython/3.9.6"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "key": "X-Frame-Options",
+              "value": "DENY"
+            },
+            {
+              "key": "Content-Length",
+              "value": "57"
+            },
+            {
+              "key": "X-Content-Type-Options",
+              "value": "nosniff"
+            },
+            {
+              "key": "Referrer-Policy",
+              "value": "same-origin"
+            },
+            {
+              "key": "Cross-Origin-Opener-Policy",
+              "value": "same-origin"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n    \"message\": \"Record updated successfully\",\n    \"status\": 200\n}"
+        }
+      ]
+    },
+    {
+      "name": "Edit Finance Form",
+      "request": {
+        "method": "GET",
+        "header": []
+      },
+      "response": []
+    },
+    {
+      "name": "Dashboard Details",
+      "request": {
+        "method": "GET",
+        "header": []
+      },
+      "response": [
+        {
+          "name": "Common Response",
+          "originalRequest": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://127.0.0.1:8000/dashboard/",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8000",
+              "path": [
+                "dashboard",
+                ""
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": null,
+          "header": [
+            {
+              "key": "Date",
+              "value": "Thu, 02 Apr 2026 20:54:35 GMT"
+            },
+            {
+              "key": "Server",
+              "value": "WSGIServer/0.2 CPython/3.9.6"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "key": "X-Frame-Options",
+              "value": "DENY"
+            },
+            {
+              "key": "Content-Length",
+              "value": "1175"
+            },
+            {
+              "key": "X-Content-Type-Options",
+              "value": "nosniff"
+            },
+            {
+              "key": "Referrer-Policy",
+              "value": "same-origin"
+            },
+            {
+              "key": "Cross-Origin-Opener-Policy",
+              "value": "same-origin"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n    \"data\": {\n        \"summary\": {\n            \"total_income\": \"29250.0\",\n            \"total_expenses\": \"900395.5\",\n            \"net_balance\": \"-871145.5\"\n        },\n        \"recent_transactions\": [\n            {\n                \"id\": 6,\n                \"amount\": 350,\n                \"type\": \"EXPENSES\",\n                \"category\": \"Travel\"\n            },\n            {\n                \"id\": 5,\n                \"amount\": 250,\n                \"type\": \"INCOME\",\n                \"category\": \"Miscellaneous\"\n            },\n            {\n                \"id\": 4,\n                \"amount\": 4000,\n                \"type\": \"INCOME\",\n                \"category\": \"Salary\"\n            },\n            {\n                \"id\": 3,\n                \"amount\": 45.5,\n                \"type\": \"EXPENSES\",\n                \"category\": \"Software & Subscriptions\"\n            },\n            {\n                \"id\": 2,\n                \"amount\": 25000,\n                \"type\": \"INCOME\",\n                \"category\": \"Sales Revenue\"\n            }\n        ],\n        \"category_total\": {\n            \"Expense_category\": [\n                {\n                    \"category\": \"Sales Revenue\",\n                    \"total_spent\": \"900000.0\"\n                },\n                {\n                    \"category\": \"Travel\",\n                    \"total_spent\": \"350.0\"\n                },\n                {\n                    \"category\": \"Software & Subscriptions\",\n                    \"total_spent\": \"45.5\"\n                }\n            ],\n            \"Income_category\": [\n                {\n                    \"category\": \"Sales Revenue\",\n                    \"total_spent\": \"25000.0\"\n                },\n                {\n                    \"category\": \"Salary\",\n                    \"total_spent\": \"4000.0\"\n                },\n                {\n                    \"category\": \"Miscellaneous\",\n                    \"total_spent\": \"250.0\"\n                }\n            ]\n        },\n        \"trends\": {\n            \"monthly\": {\n                \"income\": [\n                    {\n                        \"period\": \"2026-04\",\n                        \"total\": \"29250.0\"\n                    }\n                ],\n                \"expenses\": [\n                    {\n                        \"period\": \"2026-04\",\n                        \"total\": \"900395.5\"\n                    }\n                ]\n            },\n            \"weekly\": {\n                \"income\": [\n                    {\n                        \"period\": \"2026-03-30\",\n                        \"total\": \"29250.0\"\n                    }\n                ],\n                \"expenses\": [\n                    {\n                        \"period\": \"2026-03-30\",\n                        \"total\": \"900395.5\"\n                    }\n                ]\n            }\n        }\n    }\n}"
+        },
+        {
+          "name": "Viewer Response",
+          "originalRequest": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://127.0.0.1:8000/dashboard/",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8000",
+              "path": [
+                "dashboard",
+                ""
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": null,
+          "header": [
+            {
+              "key": "Date",
+              "value": "Thu, 02 Apr 2026 21:16:31 GMT"
+            },
+            {
+              "key": "Server",
+              "value": "WSGIServer/0.2 CPython/3.9.6"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "key": "X-Frame-Options",
+              "value": "DENY"
+            },
+            {
+              "key": "Content-Length",
+              "value": "1170"
+            },
+            {
+              "key": "X-Content-Type-Options",
+              "value": "nosniff"
+            },
+            {
+              "key": "Referrer-Policy",
+              "value": "same-origin"
+            },
+            {
+              "key": "Cross-Origin-Opener-Policy",
+              "value": "same-origin"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n    \"data\": {\n        \"summary\": {\n            \"total_income\": \"29250.0\",\n            \"total_expenses\": \"72395.5\",\n            \"net_balance\": \"-43145.5\"\n        },\n        \"recent_transactions\": [\n            {\n                \"id\": 6,\n                \"amount\": 350,\n                \"type\": \"EXPENSES\",\n                \"category\": \"Travel\"\n            },\n            {\n                \"id\": 5,\n                \"amount\": 250,\n                \"type\": \"INCOME\",\n                \"category\": \"Miscellaneous\"\n            },\n            {\n                \"id\": 4,\n                \"amount\": 4000,\n                \"type\": \"INCOME\",\n                \"category\": \"Salary\"\n            },\n            {\n                \"id\": 3,\n                \"amount\": 45.5,\n                \"type\": \"EXPENSES\",\n                \"category\": \"Software & Subscriptions\"\n            },\n            {\n                \"id\": 2,\n                \"amount\": 25000,\n                \"type\": \"INCOME\",\n                \"category\": \"Sales Revenue\"\n            }\n        ],\n        \"category_total\": {\n            \"Expense_category\": [\n                {\n                    \"category\": \"Sales Revenue\",\n                    \"total_spent\": \"72000.0\"\n                },\n                {\n                    \"category\": \"Travel\",\n                    \"total_spent\": \"350.0\"\n                },\n                {\n                    \"category\": \"Software & Subscriptions\",\n                    \"total_spent\": \"45.5\"\n                }\n            ],\n            \"Income_category\": [\n                {\n                    \"category\": \"Sales Revenue\",\n                    \"total_spent\": \"25000.0\"\n                },\n                {\n                    \"category\": \"Salary\",\n                    \"total_spent\": \"4000.0\"\n                },\n                {\n                    \"category\": \"Miscellaneous\",\n                    \"total_spent\": \"250.0\"\n                }\n            ]\n        },\n        \"trends\": {\n            \"monthly\": {\n                \"income\": [\n                    {\n                        \"period\": \"2026-04\",\n                        \"total\": \"29250.0\"\n                    }\n                ],\n                \"expenses\": [\n                    {\n                        \"period\": \"2026-04\",\n                        \"total\": \"72395.5\"\n                    }\n                ]\n            },\n            \"weekly\": {\n                \"income\": [\n                    {\n                        \"period\": \"2026-03-30\",\n                        \"total\": \"29250.0\"\n                    }\n                ],\n                \"expenses\": [\n                    {\n                        \"period\": \"2026-03-30\",\n                        \"total\": \"72395.5\"\n                    }\n                ]\n            }\n        }\n    }\n}"
+        }
+      ]
+    },
+    {
+      "name": "Expense List",
+      "request": {
+        "method": "GET",
+        "header": []
+      },
+      "response": [
+        {
+          "name": "Admin Analyst Response",
+          "originalRequest": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Cookie",
+                "value": "sessionid=yplvxw07q2hssgbdy90qkc78hrh9agjo",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "http://127.0.0.1:8000/dashboard/expense_list",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8000",
+              "path": [
+                "dashboard",
+                "expense_list"
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": null,
+          "header": [
+            {
+              "key": "Date",
+              "value": "Thu, 02 Apr 2026 21:06:17 GMT"
+            },
+            {
+              "key": "Server",
+              "value": "WSGIServer/0.2 CPython/3.9.6"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "key": "X-Frame-Options",
+              "value": "DENY"
+            },
+            {
+              "key": "Content-Length",
+              "value": "447"
+            },
+            {
+              "key": "X-Content-Type-Options",
+              "value": "nosniff"
+            },
+            {
+              "key": "Referrer-Policy",
+              "value": "same-origin"
+            },
+            {
+              "key": "Cross-Origin-Opener-Policy",
+              "value": "same-origin"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n    \"list\": [\n        {\n            \"id\": 1,\n            \"amount\": 72000,\n            \"category\": \"Sales Revenue\",\n            \"short_note\": \"Expensive travel\",\n            \"created_at\": \"2026-04-02T07:15:38.344Z\"\n        },\n        {\n            \"id\": 3,\n            \"amount\": 45.5,\n            \"category\": \"Software & Subscriptions\",\n            \"short_note\": \"Subscriptions\",\n            \"created_at\": \"2026-04-02T20:34:56.510Z\"\n        },\n        {\n            \"id\": 6,\n            \"amount\": 350,\n            \"category\": \"Travel\",\n            \"short_note\": \"Flight to client meeting\",\n            \"created_at\": \"2026-04-02T20:51:49.218Z\"\n        }\n    ],\n    \"total_expense\": \"72395.5\"\n}"
+        }
+      ]
+    },
+    {
+      "name": "Category List",
+      "request": {
+        "method": "GET",
+        "header": []
+      },
+      "response": [
+        {
+          "name": "Admin Analyst Response",
+          "originalRequest": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Cookie",
+                "value": "sessionid=y6hnh5nezt105z7u8xjiwiyz3n2vd4um",
+                "type": "text",
+                "disabled": true
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:8000/dashboard/category_list/INCOME/Sales%20Revenue/",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8000",
+              "path": [
+                "dashboard",
+                "category_list",
+                "INCOME",
+                "Sales%20Revenue",
+                ""
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": null,
+          "header": [
+            {
+              "key": "Date",
+              "value": "Thu, 02 Apr 2026 20:54:28 GMT"
+            },
+            {
+              "key": "Server",
+              "value": "WSGIServer/0.2 CPython/3.9.6"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "key": "X-Frame-Options",
+              "value": "DENY"
+            },
+            {
+              "key": "Content-Length",
+              "value": "163"
+            },
+            {
+              "key": "X-Content-Type-Options",
+              "value": "nosniff"
+            },
+            {
+              "key": "Referrer-Policy",
+              "value": "same-origin"
+            },
+            {
+              "key": "Cross-Origin-Opener-Policy",
+              "value": "same-origin"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n    \"full_list\": [\n        {\n            \"id\": 2,\n            \"amount\": 25000,\n            \"category\": \"Sales Revenue\",\n            \"short_note\": \"Annual contract for Acme Corp\",\n            \"created_at\": \"2026-04-02T20:33:06.862Z\"\n        }\n    ]\n}"
+        }
+      ]
+    },
+    {
+      "name": "Login",
+      "request": {
+        "method": "POST",
+        "header": []
+      },
+      "response": []
+    },
+    {
+      "name": "Add User",
+      "request": {
+        "method": "POST",
+        "header": []
+      },
+      "response": [
+        {
+          "name": "Admin Response",
+          "originalRequest": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"username\": \"new_user_investor\",\r\n    \"email\": \"new@company.com\",\r\n    \"password\": \"securepassword123\",\r\n    \"role\": \"Viewers\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://127.0.0.1:8000/dashboard/adminpage/add_user/",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8000",
+              "path": [
+                "dashboard",
+                "adminpage",
+                "add_user",
+                ""
+              ]
+            }
+          },
+          "status": "Created",
+          "code": 201,
+          "_postman_previewlanguage": null,
+          "header": [
+            {
+              "key": "Date",
+              "value": "Thu, 02 Apr 2026 20:52:15 GMT"
+            },
+            {
+              "key": "Server",
+              "value": "WSGIServer/0.2 CPython/3.9.6"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "key": "X-Frame-Options",
+              "value": "DENY"
+            },
+            {
+              "key": "Content-Length",
+              "value": "49"
+            },
+            {
+              "key": "X-Content-Type-Options",
+              "value": "nosniff"
+            },
+            {
+              "key": "Referrer-Policy",
+              "value": "same-origin"
+            },
+            {
+              "key": "Cross-Origin-Opener-Policy",
+              "value": "same-origin"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n    \"message\": \"User created successfully\",\n    \"id\": 8\n}"
+        },
+        {
+          "name": "Viewer Response",
+          "originalRequest": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"username\": \"new_user_investor\",\r\n    \"email\": \"new@company.com\",\r\n    \"password\": \"securepassword123\",\r\n    \"role\": \"Viewers\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://127.0.0.1:8000/dashboard/adminpage/add_user/",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8000",
+              "path": [
+                "dashboard",
+                "adminpage",
+                "add_user",
+                ""
+              ]
+            }
+          },
+          "status": "Forbidden",
+          "code": 403,
+          "_postman_previewlanguage": null,
+          "header": [
+            {
+              "key": "Date",
+              "value": "Thu, 02 Apr 2026 21:15:24 GMT"
+            },
+            {
+              "key": "Server",
+              "value": "WSGIServer/0.2 CPython/3.9.6"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "key": "X-Frame-Options",
+              "value": "DENY"
+            },
+            {
+              "key": "Content-Length",
+              "value": "36"
+            },
+            {
+              "key": "X-Content-Type-Options",
+              "value": "nosniff"
+            },
+            {
+              "key": "Referrer-Policy",
+              "value": "same-origin"
+            },
+            {
+              "key": "Cross-Origin-Opener-Policy",
+              "value": "same-origin"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n    \"error\": \"Forbidden. Admins only.\"\n}"
+        }
+      ]
+    },
+    {
+      "name": "Full List for Analyst",
+      "request": {
+        "method": "GET",
+        "header": []
+      },
+      "response": [
+        {
+          "name": "Admin Analyst Response",
+          "originalRequest": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8000/dashboard/complete_list/?page=2",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8000",
+              "path": [
+                "dashboard",
+                "complete_list",
+                ""
+              ],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "2"
+                }
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": null,
+          "header": [
+            {
+              "key": "Date",
+              "value": "Thu, 02 Apr 2026 20:57:19 GMT"
+            },
+            {
+              "key": "Server",
+              "value": "WSGIServer/0.2 CPython/3.9.6"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "key": "X-Frame-Options",
+              "value": "DENY"
+            },
+            {
+              "key": "Content-Length",
+              "value": "953"
+            },
+            {
+              "key": "X-Content-Type-Options",
+              "value": "nosniff"
+            },
+            {
+              "key": "Referrer-Policy",
+              "value": "same-origin"
+            },
+            {
+              "key": "Cross-Origin-Opener-Policy",
+              "value": "same-origin"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n    \"full_list\": [\n        {\n            \"id\": 1,\n            \"amount\": 900000,\n            \"category\": \"Sales Revenue\",\n            \"short_note\": \"Expensive travel\",\n            \"created_at\": \"2026-04-02T07:15:38.344Z\"\n        },\n        {\n            \"id\": 2,\n            \"amount\": 25000,\n            \"category\": \"Sales Revenue\",\n            \"short_note\": \"Annual contract for Acme Corp\",\n            \"created_at\": \"2026-04-02T20:33:06.862Z\"\n        },\n        {\n            \"id\": 3,\n            \"amount\": 45.5,\n            \"category\": \"Software & Subscriptions\",\n            \"short_note\": \"Subscriptions\",\n            \"created_at\": \"2026-04-02T20:34:56.510Z\"\n        },\n        {\n            \"id\": 4,\n            \"amount\": 4000,\n            \"category\": \"Salary\",\n            \"short_note\": \"April base pay\",\n            \"created_at\": \"2026-04-02T20:35:09.993Z\"\n        },\n        {\n            \"id\": 5,\n            \"amount\": 250,\n            \"category\": \"Miscellaneous\",\n            \"short_note\": \"Sold old office monitor\",\n            \"created_at\": \"2026-04-02T20:35:31.404Z\"\n        },\n        {\n            \"id\": 6,\n            \"amount\": 350,\n            \"category\": \"Travel\",\n            \"short_note\": \"Flight to client meeting\",\n            \"created_at\": \"2026-04-02T20:51:49.218Z\"\n        }\n    ],\n    \"pagination\": {\n        \"total_records\": 6,\n        \"total_pages\": 1,\n        \"current_page\": 1,\n        \"has_next\": false,\n        \"has_previous\": false\n    }\n}"
+        }
+      ]
+    },
+    {
+      "name": "Filter Record",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "description": "| **Key** | **Values** |\n| --- | --- |\n| category | Travel |\n| type | EXPENSES |\n\nParameters"
+      },
+      "response": [
+        {
+          "name": "Admin Analyst Response",
+          "originalRequest": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8000/dashboard/filter_record?type=EXPENSES&start_date=2026-03-01",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8000",
+              "path": [
+                "dashboard",
+                "filter_record"
+              ],
+              "query": [
+                {
+                  "key": "type",
+                  "value": "EXPENSES"
+                },
+                {
+                  "key": "start_date",
+                  "value": "2026-03-01"
+                }
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": null,
+          "header": [
+            {
+              "key": "Date",
+              "value": "Thu, 02 Apr 2026 21:06:29 GMT"
+            },
+            {
+              "key": "Server",
+              "value": "WSGIServer/0.2 CPython/3.9.6"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "key": "X-Frame-Options",
+              "value": "DENY"
+            },
+            {
+              "key": "Content-Length",
+              "value": "130"
+            },
+            {
+              "key": "X-Content-Type-Options",
+              "value": "nosniff"
+            },
+            {
+              "key": "Referrer-Policy",
+              "value": "same-origin"
+            },
+            {
+              "key": "Cross-Origin-Opener-Policy",
+              "value": "same-origin"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n    \"results\": [],\n    \"pagination\": {\n        \"total_records\": 0,\n        \"total_pages\": 1,\n        \"current_page\": 1,\n        \"has_next\": false,\n        \"has_previous\": false\n    }\n}"
+        }
+      ]
+    },
+    {
+      "name": "Add Finance",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "description": "``` json\n{\"user\":1,\n\"amount\":350.00,\n\"type\":\"EXPENSES\",\n\"category\":\"Travel\",\n\"short_note\":\"Hotel for client visit\"}\n\n ```"
+      },
+      "response": [
+        {
+          "name": "Admin Response",
+          "originalRequest": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"user\": 1,\r\n    \"amount\": 350.00,\r\n    \"type\": \"EXPENSES\",\r\n    \"category\": \"Travel\",\r\n    \"short_note\": \"Flight to client meeting\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://127.0.0.1:8000/dashboard/adminpage/add_finance/",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8000",
+              "path": [
+                "dashboard",
+                "adminpage",
+                "add_finance",
+                ""
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": null,
+          "header": [
+            {
+              "key": "Date",
+              "value": "Thu, 02 Apr 2026 20:51:49 GMT"
+            },
+            {
+              "key": "Server",
+              "value": "WSGIServer/0.2 CPython/3.9.6"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "key": "X-Frame-Options",
+              "value": "DENY"
+            },
+            {
+              "key": "Content-Length",
+              "value": "33"
+            },
+            {
+              "key": "X-Content-Type-Options",
+              "value": "nosniff"
+            },
+            {
+              "key": "Referrer-Policy",
+              "value": "same-origin"
+            },
+            {
+              "key": "Cross-Origin-Opener-Policy",
+              "value": "same-origin"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n    \"message\": \"New Record Created\"\n}"
+        },
+        {
+          "name": "Viewer Response",
+          "originalRequest": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"user\": 1,\r\n    \"amount\": 350.00,\r\n    \"type\": \"EXPENSES\",\r\n    \"category\": \"Travel\",\r\n    \"short_note\": \"Flight to client meeting\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://127.0.0.1:8000/dashboard/adminpage/add_finance/",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8000",
+              "path": [
+                "dashboard",
+                "adminpage",
+                "add_finance",
+                ""
+              ]
+            }
+          },
+          "status": "Forbidden",
+          "code": 403,
+          "_postman_previewlanguage": null,
+          "header": [
+            {
+              "key": "Date",
+              "value": "Thu, 02 Apr 2026 21:14:57 GMT"
+            },
+            {
+              "key": "Server",
+              "value": "WSGIServer/0.2 CPython/3.9.6"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "key": "X-Frame-Options",
+              "value": "DENY"
+            },
+            {
+              "key": "Content-Length",
+              "value": "36"
+            },
+            {
+              "key": "X-Content-Type-Options",
+              "value": "nosniff"
+            },
+            {
+              "key": "Referrer-Policy",
+              "value": "same-origin"
+            },
+            {
+              "key": "Cross-Origin-Opener-Policy",
+              "value": "same-origin"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n    \"error\": \"Forbidden. Admins only.\"\n}"
+        }
+      ]
+    }
+  ]
+}

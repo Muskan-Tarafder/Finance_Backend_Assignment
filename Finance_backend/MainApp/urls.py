@@ -16,6 +16,7 @@ urlpatterns = [
     path('adminpage/edit_user/<int:id>',views.edit_user,name='edit_user'),
     path('adminpage/delete_user/<int:id>',views.delete_user,name='delete_user'),
     path('adminpage/finance_records/',views.finance_records,name='finance_records'),
+    path('adminpage/add_finance/',views.add_finance,name='add_finance'),
     path('adminpage/edit_finance/<int:id>',views.edit_finance,name='edit_finance'),
     path('adminpage/delete_finance/<int:id>',views.delete_finance,name='delete_finance'),
 

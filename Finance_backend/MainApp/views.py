@@ -332,9 +332,12 @@ def edit_user(request,id):
 @jwt_required
 @admin_required
 def delete_user(request,id):
-    user = get_object_or_404(User,pk=id)
-    user.delete()
-    return JsonResponse({'message':'Deleted Successfully'})
+    if request.method == 'DELETE':
+        user = get_object_or_404(User,pk=id)
+        user.delete()
+        return JsonResponse({'message':'Deleted Successfully'})
+    else:
+        return JsonResponse({'error':'Method not found'})
 
 
 @jwt_required
@@ -359,7 +362,7 @@ def add_finance(request):
                 form.save()
                 return JsonResponse({'message':'New Record Created'})
             else:
-                return JsonResponse({'error':form.error},status=400)
+                return JsonResponse({'error':form.errors},status=400)
         except json.JSONDecodeError:
             return JsonResponse({'error':'Invalid Payload'},status=400)
 
