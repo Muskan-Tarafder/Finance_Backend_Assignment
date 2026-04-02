@@ -91,7 +91,7 @@ def trend_calculation():
 def jwt_required(view_func):
     @wraps(view_func)
     def _wrapped_view(request, *args, **kwargs):
-        # 1. Look for the token in the headers
+        
         auth_header = request.headers.get('Authorization')
         
         if not auth_header or not auth_header.startswith('Bearer '):
@@ -100,10 +100,10 @@ def jwt_required(view_func):
         token = auth_header.split(' ')[1] 
         
         try:
-            # 2. Decode the token (Automatically checks if it's expired or tampered with)
+            
             payload = jwt.decode(token, settings.SECRET_KEY, algorithms=['HS256'])
             
-            # 3. MAGIC TRICK: Fetch the user and attach them to the request!
+            
             user = User.objects.get(id=payload['user_id'])
             request.user = user 
             
@@ -245,14 +245,12 @@ def category_list(request,category,type):
 def admin_required(view_func):
     @wraps(view_func)
     def _wrapped_view(request, *args, **kwargs):
-        # Rule A: Are they logged in?
-            
-        # Rule B: Are they an Admin? (Checking group name or superuser status)
+
         is_admin = request.user.groups.filter(name='Admin').exists() or request.user.is_superuser
         if not is_admin:
             return JsonResponse({'error': 'Forbidden. Admins only.'}, status=403)
             
-        # If they pass both rules, let them in!
+            
         return view_func(request, *args, **kwargs)
     return _wrapped_view
 
