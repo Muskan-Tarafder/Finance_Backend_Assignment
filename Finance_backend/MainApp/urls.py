@@ -3,9 +3,15 @@ from . import views
 urlpatterns = [
 
     path('',views.dashboard,name='dashboard'),
+    path('expense_list',views.expense_list,name='expense_list'),
+    path('income_list/',views.income_list,name='income_list'),
+    path('complete_list/',views.complete_list,name='complete_list'),
+    path('category_list/<str:type>/<str:category>/', views.category_list, name='category_list'),
+
 
     path('adminpage',views.adminpage,name='adminpage'),
     path('adminpage/user_details/',views.user_details,name='user_details'),
+    path('adminpage/add_user/',views.add_user,name='add_user'),
     path('adminpage/edit_user/<int:id>',views.edit_user,name='edit_user'),
     path('adminpage/delete_user/<int:id>',views.delete_user,name='delete_user'),
     path('adminpage/finance_records/',views.finance_records,name='finance_records'),

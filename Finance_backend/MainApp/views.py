@@ -1,6 +1,6 @@
 from django.shortcuts import render,get_object_or_404
 from django.http import JsonResponse
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User, Group
 from .models import *
 from .forms import *
 from django.views.decorators.csrf import csrf_exempt
@@ -8,12 +8,16 @@ import json
 from django.forms.models import model_to_dict
 from functools import wraps
 from django.db.models import Sum
+import jwt
 from django.db.models.functions import TruncMonth, TruncWeek
+from django.conf import settings
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 # Create your views here.
 
-# =========
-# Dashboard
-# =========
+
+# ================
+# Helper Functions
+# ================
 
 def category_calculation():
     category_wise = FinancialRecord.objects.filter(type='EXPENSES') \
@@ -43,7 +47,7 @@ def category_calculation():
 
 
 def trend_calculation():
-    
+
     monthly_income_qs = FinancialRecord.objects.filter(type='INCOME') \
         .annotate(month=TruncMonth('created_at')) \
         .values('month') \
@@ -83,6 +87,40 @@ def trend_calculation():
         "weekly": weekly_trends
     }
 
+
+def jwt_required(view_func):
+    @wraps(view_func)
+    def _wrapped_view(request, *args, **kwargs):
+        # 1. Look for the token in the headers
+        auth_header = request.headers.get('Authorization')
+        
+        if not auth_header or not auth_header.startswith('Bearer '):
+            return JsonResponse({'error': 'Unauthorized. Missing Bearer token.'}, status=401)
+            
+        token = auth_header.split(' ')[1] 
+        
+        try:
+            # 2. Decode the token (Automatically checks if it's expired or tampered with)
+            payload = jwt.decode(token, settings.SECRET_KEY, algorithms=['HS256'])
+            
+            # 3. MAGIC TRICK: Fetch the user and attach them to the request!
+            user = User.objects.get(id=payload['user_id'])
+            request.user = user 
+            
+            return view_func(request, *args, **kwargs)
+            
+        except jwt.ExpiredSignatureError:
+            return JsonResponse({'error': 'Token has expired. Please log in again.'}, status=401)
+        except (jwt.InvalidTokenError, User.DoesNotExist):
+            return JsonResponse({'error': 'Invalid token.'}, status=401)
+            
+    return _wrapped_view
+
+# =========
+# Dashboard
+# =========
+
+@jwt_required
 def dashboard(request):
     total_income = FinancialRecord.objects.filter(type='INCOME').aggregate(Sum('amount'))['amount__sum'] or 0
     total_expenses = FinancialRecord.objects.filter(type='EXPENSES').aggregate(Sum('amount'))['amount__sum'] or 0
@@ -110,8 +148,92 @@ def dashboard(request):
             'trends':trends,
         }
     return JsonResponse({'data': dashboard_data})
-        
-    return JsonResponse({'error': 'Method not allowed'}, status=405)
+
+
+
+# ==============
+# Analyst Access
+# ==============
+
+@jwt_required
+def expense_list(request):
+    print("User's groups are:", list(request.user.groups.values_list('name', flat=True)))
+    
+    if not request.user.groups.filter(name='Viewers').exists():
+        expense_list = FinancialRecord.objects.filter(type='EXPENSES').values('id','amount', 'category', 'short_note', 'created_at')
+        total_expense = FinancialRecord.objects.filter(type='EXPENSES').aggregate(Sum('amount'))['amount__sum'] or 0
+
+        context = {
+            'list': list(expense_list),
+            'total_expense': str(total_expense),
+        }
+        return JsonResponse(context)
+    else:
+        return JsonResponse({'error': 'Viewers do not have access to this API.'}, status=403)
+    
+
+@jwt_required
+def income_list(request):
+    print("User's groups are:", list(request.user.groups.values_list('name', flat=True)))
+    
+    if not request.user.groups.filter(name='Viewers').exists():
+        expense_list = FinancialRecord.objects.filter(type='INCOME').values('id','amount', 'category', 'short_note', 'created_at')
+        total_expense = FinancialRecord.objects.filter(type='INCOME').aggregate(Sum('amount'))['amount__sum'] or 0
+
+        context = {
+            'list': list(expense_list),
+            'total_expense': str(total_expense),
+        }
+        return JsonResponse(context)
+    else:
+        return JsonResponse({'error': 'Viewers do not have access to this API.'}, status=403)
+    
+@jwt_required
+def complete_list(request):
+    print("User's groups are:", list(request.user.groups.values_list('name', flat=True)))
+    
+    if not request.user.groups.filter(name='Viewers').exists():
+        full_list = FinancialRecord.objects.all().values('id','amount', 'category', 'short_note', 'created_at')
+        paginator = Paginator(full_list, 10) 
+
+        page_number = request.GET.get('page', 1)
+        try:
+            page_obj = paginator.page(page_number)
+        except PageNotAnInteger:
+            page_obj = paginator.page(1)
+        except EmptyPage:
+            page_obj = paginator.page(paginator.num_pages)
+
+        context = {
+            'full_list': list(page_obj),               
+            'pagination': {
+                'total_records': paginator.count,      
+                'total_pages': paginator.num_pages,    
+                'current_page': page_obj.number,       
+                'has_next': page_obj.has_next(),       
+                'has_previous': page_obj.has_previous()
+            }
+        }
+        return JsonResponse(context)
+    else:
+        return JsonResponse({'error': 'Viewers do not have access to this API.'}, status=403)
+    
+
+@jwt_required
+def category_list(request,category,type):
+    print("User's groups are:", list(request.user.groups.values_list('name', flat=True)))
+    
+    if not request.user.groups.filter(name='Viewers').exists():
+        cat_list =  FinancialRecord.objects.filter(type=type,category=category).values('id','amount', 'category', 'short_note', 'created_at')  
+
+        context = {
+            'full_list': list(cat_list),
+        }
+        return JsonResponse(context)
+    else:
+        return JsonResponse({'error': 'Viewers do not have access to this API.'}, status=403)
+    
+    
 
 
 
@@ -124,8 +246,6 @@ def admin_required(view_func):
     @wraps(view_func)
     def _wrapped_view(request, *args, **kwargs):
         # Rule A: Are they logged in?
-        if not request.user.is_authenticated:
-            return JsonResponse({'error': 'Unauthorized access.'}, status=401)
             
         # Rule B: Are they an Admin? (Checking group name or superuser status)
         is_admin = request.user.groups.filter(name='Admin').exists() or request.user.is_superuser
@@ -136,6 +256,7 @@ def admin_required(view_func):
         return view_func(request, *args, **kwargs)
     return _wrapped_view
 
+@jwt_required
 @admin_required
 def adminpage(request):
     context = {
@@ -145,6 +266,7 @@ def adminpage(request):
     }
     return JsonResponse(context)
 
+@jwt_required
 @admin_required
 def user_details(request):
     data = list(User.objects.all().values('id', 'username', 'email'))
@@ -154,6 +276,28 @@ def user_details(request):
     return JsonResponse(context)
 
 @csrf_exempt
+@jwt_required
+@admin_required
+def add_user(request):
+    try:
+        if request.method == 'POST':
+            data = json.loads(request.body)
+            user = User.objects.create_user(
+                    username=data['username'],
+                    email=data.get('email', ''),
+                    password=data['password']
+                )
+        if 'role' in data:
+            group = Group.objects.get(name=data['role'])
+            user.groups.add(group)
+                
+        return JsonResponse({'message': 'User created successfully', 'id': user.id}, status=201)
+    except Exception as e:
+        return JsonResponse({'error': str(e)}, status=400)
+    return JsonResponse({'error': 'Method not allowed'}, status=405)
+
+@csrf_exempt
+@jwt_required
 @admin_required
 def edit_user(request,id):
     user = get_object_or_404(User,pk=id)
@@ -182,15 +326,18 @@ def edit_user(request,id):
     }
     
     return JsonResponse({'data': user_data})
-    
+
 
 @csrf_exempt
+@jwt_required
 @admin_required
 def delete_user(request,id):
     user = get_object_or_404(User,pk=id)
     user.delete()
     return JsonResponse({'message':'Deleted Successfully'})
 
+
+@jwt_required
 @admin_required
 def finance_records(request):
     data = list(FinancialRecord.objects.all().values())
@@ -201,6 +348,7 @@ def finance_records(request):
 
 
 @csrf_exempt
+@jwt_required
 @admin_required
 def add_finance(request):
     if request.method=='POST':
@@ -211,11 +359,13 @@ def add_finance(request):
                 form.save()
                 return JsonResponse({'message':'New Record Created'})
             else:
-                return JsonResponse({'error':form.error})
+                return JsonResponse({'error':form.error},status=400)
         except json.JSONDecodeError:
             return JsonResponse({'error':'Invalid Payload'},status=400)
-        
+
+      
 @csrf_exempt
+@jwt_required 
 @admin_required
 def edit_finance(request,id):
     row = get_object_or_404(FinancialRecord,pk=id)
@@ -248,9 +398,13 @@ def edit_finance(request,id):
     return JsonResponse({'data': record_data})
 
 
+
 @csrf_exempt
+@jwt_required
 @admin_required
 def delete_finance(request,id):
-    user = get_object_or_404(FinancialRecord,pk=id)
-    user.delete()
-    return JsonResponse({'message':'Deleted Successfully'})
+    if request.method == 'DELETE':
+        user = get_object_or_404(FinancialRecord,pk=id)
+        user.delete()
+        return JsonResponse({'message':'Deleted Successfully'})
+    return JsonResponse({'message':'Method wrong'},status=405)
