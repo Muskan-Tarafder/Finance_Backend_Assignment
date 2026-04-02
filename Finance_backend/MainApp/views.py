@@ -339,7 +339,7 @@ def delete_user(request,id):
         user.delete()
         return JsonResponse({'message':'Deleted Successfully'})
     else:
-        return JsonResponse({'error':'Method not found'})
+        return JsonResponse({'error':'Method not found'}, status=405)
 
 
 @jwt_required
@@ -367,6 +367,7 @@ def add_finance(request):
                 return JsonResponse({'error':form.errors},status=400)
         except json.JSONDecodeError:
             return JsonResponse({'error':'Invalid Payload'},status=400)
+    return JsonResponse({'error': 'Method not allowed'}, status=405)
 
       
 @csrf_exempt
@@ -437,7 +438,7 @@ def filter_record(request):
         records = records.filter(type__iexact=record_type)
         
     if start_date:
-        records = records.filter(created_at__lte=start_date) 
+        records = records.filter(created_at__gte=start_date) 
         
     if end_date:
         records = records.filter(created_at__lte=end_date)
